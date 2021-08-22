@@ -32,6 +32,9 @@ public class Agenda {
     public boolean adicionarContato(Contato contato){
         for (Contato e : listaContatos) {
             if(contato.getName().equals(e.getName())){
+                for (Fone fone : contato.getFones()) {
+                    e.adicionarFone(fone);
+                }
                 return false;
             }
         }
@@ -39,7 +42,7 @@ public class Agenda {
         if(contato.getQtdFones() == 0){
             return false;
         }else{
-            
+
             listaContatos.add(contato);
             return true;
         }
@@ -60,7 +63,7 @@ public class Agenda {
 
     public boolean removerFone(String name, int index){
         for (Contato contato : listaContatos) {
-            if(contato.getName().equals(name)){
+            if(contato.getName().equals(name) && index <= contato.getQtdFones()){
                 contato.removerFone(index);
                 return true;
             }
@@ -89,6 +92,7 @@ public class Agenda {
     }
 
     public ArrayList<Contato> pesquisar(String expressao){
+        
         return null;
     }
 
