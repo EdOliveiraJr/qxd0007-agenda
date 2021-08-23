@@ -20,4 +20,8 @@ public class Fone {
         return numero;
     }
 
+    public String toString(){
+        return identificador +"/"+ numero;
+    }
+
 }

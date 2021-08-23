@@ -47,4 +47,7 @@ public class Contato {
         return qtdFones;
     }
     
+    public String toString(){
+        return name +"/"+ fones;
+    }
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.Comparator;
 
 public class Agenda {
     private List <Contato> listaContatos;
@@ -13,6 +14,7 @@ public class Agenda {
     }
 
     public List<Contato> getContatos() {
+        listaContatos.sort(Comparator.comparing(Contato::getName));
         return listaContatos;  
     }
 
@@ -91,9 +93,24 @@ public class Agenda {
         return totalFones;
     }
 
-    public ArrayList<Contato> pesquisar(String expressao){
+    public ArrayList <Contato> pesquisar(String expressao){
+        ArrayList <Contato> resultado = new ArrayList<>();
+
+        for (Contato contato : listaContatos) {
+            if(contato.getName().contains(expressao)){
+                resultado.add(contato);
+            }
+
+            for (Fone fone: contato.getFones()) {
+                if(fone.getNumero().contains(expressao)){
+                    resultado.add(contato);
+                }
+            }
+        }
+        resultado.sort(Comparator.comparing(Contato::getName));
+        return resultado;
         
-        return null;
+
     }
 
 }
